@@ -1,0 +1,313 @@
+╔════════════════════════════════════════════════════════════════╗
+║                                                                ║
+║          UniFi Collector Monitor v2.1.0                       ║
+║          Projeto Modular - Instruções de Instalação          ║
+║                                                                ║
+╚════════════════════════════════════════════════════════════════╝
+
+═══════════════════════════════════════════════════════════════
+  MÉTODO 1: Instalação Automatizada (Recomendado)
+═══════════════════════════════════════════════════════════════
+
+1. Extrair o arquivo:
+   
+   tar -xzf unifi-collector-monitor.tar.gz
+   cd unifi-collector-monitor
+
+2. Executar script de instalação:
+   
+   bash setup.sh
+
+3. Configurar via Interface (NOVO v2.1):
+   
+   python3 run.py
+   └─ Vá em "⚙️ Configurações"
+   └─ Edite Host, Usuário e Senha
+   └─ Clique "💾 Salvar"
+
+4. Pronto! Sistema configurado e operacional ✅
+
+═══════════════════════════════════════════════════════════════
+  MÉTODO 2: Instalação Manual
+═══════════════════════════════════════════════════════════════
+
+1. Extrair e entrar no diretório:
+   
+   tar -xzf unifi-collector-monitor.tar.gz
+   cd unifi-collector-monitor
+
+2. Instalar dependências:
+   
+   pip3 install PyQt5 requests urllib3
+
+3. Executar:
+   
+   python3 run.py
+
+4. Configurar via Interface:
+   
+   Aba "⚙️ Configurações" → Editar → Salvar
+
+═══════════════════════════════════════════════════════════════
+  CONFIGURAÇÃO PELA INTERFACE (NOVO v2.1 - RECOMENDADO!)
+═══════════════════════════════════════════════════════════════
+
+NÃO PRECISA MAIS EDITAR ARQUIVOS! 🎉
+
+1. Execute a aplicação:
+   
+   python3 run.py
+
+2. Vá na aba "⚙️ Configurações"
+
+3. Edite os campos:
+   
+   ┌─────────────────────────────────────┐
+   │ 🌐 Host:                            │
+   │ https://203.0.113.1:8443          │
+   ├─────────────────────────────────────┤
+   │ 👤 Usuário:                         │
+   │ admin                               │
+   ├─────────────────────────────────────┤
+   │ 🔑 Senha:                           │
+   │ ••••••••                            │
+   └─────────────────────────────────────┘
+
+4. (Opcional) Clique "🔌 Testar Conexão"
+
+5. Clique "💾 Salvar Configurações"
+
+6. Pronto! Vá em "🖥️ Monitor" e use o sistema.
+
+✅ Configurações salvas em: unifi_config.json
+
+═══════════════════════════════════════════════════════════════
+  CONFIGURAÇÃO TRADICIONAL (Opcional)
+═══════════════════════════════════════════════════════════════
+
+Se preferir editar arquivo (ao invés da interface):
+
+Edite: app/config.py
+
+UNIFI_HOST = "https://203.0.113.1:8443"
+UNIFI_USERNAME = "seu_usuario"
+UNIFI_PASSWORD = "sua_senha"
+
+Nota: Interface sobrescreve estes valores!
+
+═══════════════════════════════════════════════════════════════
+  REQUISITOS DO SISTEMA
+═══════════════════════════════════════════════════════════════
+
+• Sistema Operacional:
+  - Linux (Ubuntu, Debian, CentOS, etc.)
+  - Windows 10/11
+  - macOS
+
+• Python:
+  - Versão 3.7 ou superior
+  - pip3 instalado
+
+• Dependências Python:
+  - PyQt5 >= 5.15.0
+  - requests >= 2.28.0
+  - urllib3 >= 1.26.0
+
+• Rede:
+  - Acesso ao UniFi Controller
+  - Porta 8443 acessível
+
+═══════════════════════════════════════════════════════════════
+  ESTRUTURA DE ARQUIVOS
+═══════════════════════════════════════════════════════════════
+
+unifi-collector-monitor/
+│
+├── app/                  # Código fonte da aplicação
+│   ├── config.py         # ⭐ Valores padrão
+│   ├── gui/              # Interface gráfica
+│   │   ├── main_window.py
+│   │   ├── collaborators_tab.py
+│   │   └── settings_tab.py    # NOVO v2.1 - Configurações
+│   ├── workers/          # Coleta de dados
+│   └── data/             # Gerenciamento de dados
+│
+├── docs/                 # Documentação detalhada
+├── run.py                # ⭐ EXECUTE AQUI!
+├── README.md             # Documentação principal
+├── setup.sh              # Script de instalação
+│
+└── unifi_config.json     # 🔐 Credenciais salvas [AUTO]
+
+═══════════════════════════════════════════════════════════════
+  PRIMEIRO USO
+═══════════════════════════════════════════════════════════════
+
+1. Ao executar, a aplicação abre com três abas:
+   
+   🖥️ Monitor de Coletores
+   └─> Visualiza status em tempo real
+
+   👥 Gestão de Colaboradores
+   └─> Atribui colaboradores aos coletores
+
+   ⚙️ Configurações (NOVO v2.1)
+   └─> Edita credenciais UniFi
+
+2. Configure primeiro em "⚙️ Configurações"
+
+3. A coleta inicial pode demorar 5-10 segundos
+
+4. Auto-atualização ativa por padrão (15 segundos)
+
+5. Use filtros para localizar coletores específicos
+
+═══════════════════════════════════════════════════════════════
+  PRIORIDADE DE CONFIGURAÇÕES (v2.1)
+═══════════════════════════════════════════════════════════════
+
+Sistema carrega configurações nesta ordem:
+
+1. Existe unifi_config.json?
+   ├─ ✅ SIM → Usa credenciais do JSON (interface)
+   └─ ❌ NÃO → Usa credenciais do config.py (padrão)
+
+Fluxo Completo:
+┌────────────────────────────────────┐
+│ 1. Usuário edita em "⚙️ Config"   │
+│ 2. Clica "💾 Salvar"               │
+│ 3. Cria unifi_config.json          │
+│ 4. Próxima coleta usa JSON ✅      │
+└────────────────────────────────────┘
+
+═══════════════════════════════════════════════════════════════
+  DOCUMENTAÇÃO DISPONÍVEL
+═══════════════════════════════════════════════════════════════
+
+📖 README.md
+   └─> Documentação completa com todos os recursos
+
+🚀 QUICKSTART.md
+   └─> Guia rápido de 5 minutos
+
+📚 docs/EXAMPLES.md
+   └─> Exemplos práticos de uso (16 exemplos!)
+
+🤝 docs/CONTRIBUTING.md
+   └─> Para desenvolvedores e contribuidores
+
+🏗️ docs/ARCHITECTURE.md
+   └─> Arquitetura técnica do sistema
+
+📝 CHANGELOG.md
+   └─> Novidades da versão 2.1.0
+
+═══════════════════════════════════════════════════════════════
+  SOLUÇÃO DE PROBLEMAS
+═══════════════════════════════════════════════════════════════
+
+❌ "Erro de conexão UniFi"
+   → Vá em "⚙️ Configurações"
+   → Clique "🔌 Testar Conexão"
+   → Corrija credenciais se necessário
+   → Verifique se Controller está acessível
+
+❌ "ModuleNotFoundError: No module named 'PyQt5'"
+   → Execute: pip3 install PyQt5
+
+❌ "python3: command not found"
+   → Instale Python 3.7+
+   → Linux: sudo apt install python3
+   → Windows: Download em python.org
+
+❌ "Tabela vazia"
+   → Verifique credenciais em "⚙️ Configurações"
+   → Confirme que Controller está acessível
+   → Verifique se há coletores com "coletor" no nome
+   → Veja logs no terminal
+
+❌ "Configurações não aplicam" (v2.1)
+   → Certifique-se de clicar "💾 Salvar"
+   → Verifique se unifi_config.json foi criado
+   → Vá em "🖥️ Monitor" e clique "🔄 Coletar"
+
+❌ "Texto cortado nas tabs"
+   → Edite app/gui/main_window.py (linha ~55)
+   → Mude: padding: 10px 60px;
+   → Adicione: min-width: 250px;
+
+═══════════════════════════════════════════════════════════════
+  SEGURANÇA (v2.1)
+═══════════════════════════════════════════════════════════════
+
+⚠️ O arquivo unifi_config.json contém senha em texto plano!
+
+Boas Práticas:
+
+1. Adicione ao .gitignore:
+   echo "unifi_config.json" >> .gitignore
+
+2. Configure permissões (Linux/Mac):
+   chmod 600 unifi_config.json
+
+3. Faça backup seguro:
+   cp unifi_config.json ~/backups/
+
+4. NÃO compartilhe o arquivo
+
+5. Considere criptografia em produção
+
+═══════════════════════════════════════════════════════════════
+  NOVIDADES v2.1.0
+═══════════════════════════════════════════════════════════════
+
+✅ Aba de Configurações
+   └─ Edite credenciais pela interface
+   └─ Teste conexão antes de salvar
+   └─ Aplicação imediata (sem reiniciar)
+
+✅ Detecção Aprimorada de IP Incorreto
+   └─ Indicadores visuais claros
+   └─ Piscar vermelho para alertas
+   └─ Botões apenas no IP correto
+
+✅ Sistema de Prioridade
+   └─ unifi_config.json > config.py
+   └─ Carregamento dinâmico
+
+═══════════════════════════════════════════════════════════════
+  SUPORTE E AJUDA
+═══════════════════════════════════════════════════════════════
+
+1. Leia README.md completo
+2. Consulte QUICKSTART.md para início rápido
+3. Veja docs/EXAMPLES.md para casos práticos
+4. Entre em contato com o time de desenvolvimento
+
+═══════════════════════════════════════════════════════════════
+  INFORMAÇÕES DO PROJETO
+═══════════════════════════════════════════════════════════════
+
+Versão: 2.1.0
+Data: 06/11/2025
+Status: Produção ✅
+Linguagem: Python 3.7+
+Interface: PyQt5
+Licença: Uso Interno
+
+Desenvolvido por: Lucas Veríssimo de Oliveira
+Propriedade: Empresa
+
+═══════════════════════════════════════════════════════════════
+  INÍCIO RÁPIDO (3 COMANDOS)
+═══════════════════════════════════════════════════════════════
+
+$ bash setup.sh                     # Instalar
+$ python3 run.py                    # Executar
+$ # Configurar em "⚙️ Configurações" # Configurar via interface
+
+═══════════════════════════════════════════════════════════════
+
+Pronto para usar! 🚀
+
+Versão 2.1.0 - Configuração Simplificada ⚙️

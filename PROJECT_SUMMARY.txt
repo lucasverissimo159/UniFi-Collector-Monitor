@@ -1,0 +1,51 @@
+========================================
+  UniFi Collector Monitor v3.0.0
+  Sistema Inteligente Completo
+========================================
+
+📁 ESTRUTURA DO PROJETO:
+
+unifi-collector-monitor/
+│
+├── app/                           # 📦 Pacote principal da aplicação
+│   ├── __init__.py
+│   ├── config.py                  # ⚙️ Configurações padrão v3.0
+│   │
+│   ├── workers/                   # ⚡ Threads de processamento
+│   │   ├── collection_worker.py  # Coleta dados do UniFi (ATUALIZADO)
+│   │   └── status_worker.py      # Verifica pings
+│   │
+│   ├── gui/                       # 🖥️ Interface gráfica
+│   │   ├── main_window.py        # Janela principal + Monitor Tab
+│   │   ├── collaborators_tab.py  # Aba de Colaboradores
+│   │   ├── settings_tab.py       # ⚙️ Config - 3 TABS! [v3.0]
+│   │   ├── login_dialog.py       # 🔐 Login [NOVO v3.0]
+│   │   ├── first_access_dialog.py # 🎯 Primeiro acesso [NOVO v3.0]
+│   │   └── password_reset_dialog.py # 🔑 Recuperação [NOVO v3.0]
+│   │
+│   └── data/                      # 💾 Gerenciamento de dados
+│       ├── data_manager.py       # Load/Save JSON
+│       ├── auth_manager.py       # 🔐 Autenticação [NOVO v3.0]
+│       ├── ip_blocker.py         # 🚫 Bloqueio [NOVO v3.0]
+│       └── ip_mapping.py         # 📡 IP/Coletor [NOVO v3.0]
+│
+├── Arquivos de dados (AUTO-CRIADOS v3.0):
+│   ├── unifi_config.json             → UniFi
+│   ├── settings_auth.json            → Admin (SHA-256)
+│   ├── ip_range_config.json          → IP Range
+│   ├── ip_blocks.json                → Bloqueios
+│   └── colaboradores_data.json       → Colaboradores
+│
+└── run.py                        # 🚀 EXECUTAR AQUI!
+
+========================================
+  NOVIDADES v3.0.0 (16/02/2026)
+========================================
+
+🔐 AUTENTICAÇÃO (NOVO)
+🚫 BLOQUEIO INTELIGENTE (NOVO)
+📡 IP RANGE CONFIGURÁVEL (NOVO)
+
+========================================
+
+Versão 3.0.0 - Sistema Inteligente Completo 🎉

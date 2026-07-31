@@ -1,0 +1,70 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Virtual Environment
+venv/
+ENV/
+env/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Data Files
+colaboradores_data.json
+unifi_config.json
+*.log
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Temporary
+*.tmp
+*.bak
+script-2.py
+modularize.py
+
+# Resources (keep structure, ignore optional files)
+# resources/icons/*.png
+# Uncomment above line if you don't want to track icon files
+
+# ============================================================
+#  Sanitizacao para publicacao publica (adicionais)
+# ============================================================
+# Autenticacao administrativa (hash de senha / pergunta de seguranca)
+settings_auth.json
+# Config local com credenciais/IPs reais (sobrescreve app/config.py)
+app/config_local.py
+config_local.py
+# Configuracao de range de IP salva em runtime (contem IP real)
+ip_range_config.json
+# Estado de bloqueios em runtime
+ip_blocks.json
+# Historico coletado (dados reais)
+historico_arquivado/
+# Logs compactados
+*.gz
+*.log.gz

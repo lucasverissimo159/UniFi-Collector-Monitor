@@ -1,0 +1,103 @@
+═══════════════════════════════════════════════════════════════
+  EXEMPLO DE ÍCONE PARA MONITOR DE COLETORES UNIFI
+═══════════════════════════════════════════════════════════════
+
+📍 Coloque seu ícone com o nome: icon.png
+
+Sugestões de ícone:
+
+1. Ícone de Rede/WiFi
+   - Símbolo de ondas WiFi
+   - Torre de transmissão
+   - Sinal de rede
+
+2. Ícone de Monitor/Dashboard
+   - Gráfico com linhas
+   - Monitor com dados
+   - Dashboard com métricas
+
+3. Ícone de Servidor/Dispositivos
+   - Servidor
+   - Dispositivos conectados
+   - Nó de rede
+
+4. Ícone Corporativo
+   - Logotipo da empresa
+   - Símbolo personalizado
+   - Cores da marca
+
+═══════════════════════════════════════════════════════════════
+  ONDE ENCONTRAR ÍCONES GRATUITOS
+═══════════════════════════════════════════════════════════════
+
+1. Flaticon (https://www.flaticon.com/)
+   - Pesquise: "network monitor", "wifi", "server"
+   - Baixe em PNG 512x512
+
+2. Icons8 (https://icons8.com/)
+   - Estilo: flat, outline, ou filled
+   - Formatos: PNG, SVG
+
+3. Noun Project (https://thenounproject.com/)
+   - Ícones simples e profissionais
+   - Licença gratuita disponível
+
+4. Material Icons (https://fonts.google.com/icons)
+   - Estilo consistente
+   - Vários tamanhos
+
+═══════════════════════════════════════════════════════════════
+  ESPECIFICAÇÕES TÉCNICAS
+═══════════════════════════════════════════════════════════════
+
+Nome: icon.png
+Formato: PNG (Portable Network Graphics)
+Tamanho: 256x256 ou 512x512 pixels
+Profundidade: 32-bit (com canal alpha para transparência)
+Fundo: Transparente (recomendado)
+
+Tamanhos que serão usados automaticamente:
+- 16x16  (barra de tarefas)
+- 32x32  (barra de título)
+- 48x48  (alt+tab)
+- 256x256 (menu iniciar, alta resolução)
+
+═══════════════════════════════════════════════════════════════
+  TESTE SEU ÍCONE
+═══════════════════════════════════════════════════════════════
+
+Após adicionar icon.png:
+
+1. Execute a aplicação:
+   python3 run.py
+
+2. Verifique:
+   ✓ Ícone aparece na barra de título
+   ✓ Ícone aparece nos diálogos
+   ✓ Ícone aparece na barra de tarefas
+
+3. Se não aparecer:
+   - Verifique o nome: deve ser exatamente "icon.png"
+   - Verifique o caminho: resources/icons/icon.png
+   - Verifique se é PNG válido
+
+═══════════════════════════════════════════════════════════════
+  EXEMPLO VISUAL (ASCII)
+═══════════════════════════════════════════════════════════════
+
+       ╔═══════════════╗
+       ║               ║
+       ║   📡 WiFi     ║
+       ║               ║
+       ║   ╱╲ ╱╲ ╱╲   ║
+       ║  ╱  ╲╱  ╲╱   ║
+       ║ ╱    ╳    ╲  ║
+       ║      ║       ║
+       ║   [SERVER]   ║
+       ║               ║
+       ╚═══════════════╝
+
+Este é apenas um exemplo visual.
+Use um ícone profissional em PNG!
+
+═══════════════════════════════════════════════════════════════
