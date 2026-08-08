@@ -595,7 +595,6 @@ class ConfigManager:
         key = self._KEY
         raw = base64.b64decode(encoded.encode())
         return ''.join(chr(b ^ key[i % len(key)]) for i, b in enumerate(raw))
-                                                                                                                                                                                                                                                            a2026!
 4. Escolher pergunta: "Qual o nome da sua mãe?"
 5. Resposta: "Maria" (criptografada)
 6. ✅ Sistema pronto!
