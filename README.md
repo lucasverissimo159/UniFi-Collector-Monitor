@@ -1,3 +1,626 @@
+# 📡 UniFi Collector Monitor v3.0.0 - Complete Smart System
+
+UniFi Collector Monitor with Employee Management, Administrative Authentication, Smart Blocking and Configurable IP Range - Professional graphical interface for real-time monitoring.
+
+> ⚠️ **Repository available for portfolio only.** The code can
+> be viewed, but **cannot** be copied, downloaded, used or
+> reused in other projects. See the [License](#-license) section and the
+> file [`LICENSE`](./LICENSE).
+
+## 🎉 NEWS v3.0.0 (02/16/2026)
+
+### 🔐 **Administrative Authentication System** (NEW!)
+- Login required to access settings
+- Encrypted password (SHA-256)
+- First access requires changing the default password
+- Security question for recovery
+- Logout for protection
+
+### 🚫 **Smart Lock System** (NEW!)
+- Progressive blocking of collectors with incorrect IP
+- Attempts 1-4: Temporary lock with unlock (10s) for verification
+- Attempt 5+: Definitive blocking
+- Automatic unlocking when IP is fixed
+- Real-time statistics
+
+### 📡 **Configurable IP Range** (NEW!)
+- Automatic mode detection:
+  - **STANDARD** (100-199): Last 2 digits
+  - **OFFSET** (2-253): Sequential
+- Interface with real-time preview
+- Supports any range (1-254)
+- Immediate application without restarting
+
+### ⚙️ **Settings - 3 Tabs** (UPDATED!)
+- Tab 1: 🌐 UniFi Controller
+- Tab 2: 📡 IP Range (NEW!)
+- Tab 3: 🚫 Locks (NEW!)
+
+---
+
+## 🚀 Features
+
+- **🔐 Secure Authentication**: SHA-256 login, first login required, password recovery
+- **🚫 Smart Blocking**: Automatic progressive blocking of incorrect IPs
+- **📡 Configurable IP Range**: Any range (2-253, 100-199, etc) with automatic detection
+- **⚙️ Configuration through the Interface**: 3 organized tabs (UniFi, IP Range, Blocks)
+- **Real-Time Monitoring**: Collector status (Online/Offline/Free/Alert)
+- **Auto-update**: Automatic update every 15 seconds
+- **Employee Management**: Assignment of employees per collector with shifts
+- **Incorrect IP Detection**: Visual alert + automatic blocking
+- **Advanced Filters**: Filters by status, sector, manufacturer, name and IP
+- **Modern Interface**: PyQt5 with professional design
+- **Full Persistence**: All settings saved in JSON
+
+---
+
+## 📋 Requirements
+
+- Python 3.7+
+- PyQt5 >= 5.15.0
+- requests >= 2.28.0
+- urllib3 >= 1.26.0
+
+---
+
+## 🔧 Installation
+
+### 1. Clone or download the project
+```bash
+cd unifi-collector-monitor
+```
+
+### 2. Install dependencies
+```bash
+pip install -r requirements.txt
+```
+
+### 3. Run the application
+```bash
+python3 run.py
+```
+
+### 4. First Access (NEW v3.0) 🔐
+
+**MANDATORY** in the first run:
+```
+┌────────────────────────────────────┐
+│ 🎯 Primeiro Acesso Obrigatório     │
+├────────────────────────────────────┤
+│ Credenciais padrão:                │
+│   Usuário: admin                   │
+│   Senha: admin123                  │
+│                                    │
+│ 1. Digite NOVA senha (min 6 chars)│
+│ 2. Escolha pergunta de segurança  │
+│ 3. Digite resposta (criptografada)│
+│ 4. Clique "✅ Configurar"         │
+└────────────────────────────────────┘
+```
+
+### 5. Configure the System (v3.0)
+
+1. Login to **"⚙️ Settings"**
+2. **Tab 🌐 UniFi**: Edit UniFi credentials
+3. **Tab 📡 IP Range**: Configure IP range
+4. **Tab 🚫 Blocks**: View statistics
+5. Done! ✅
+
+---
+
+## 📁 Project Structure v3.0
+```
+unifi-collector-monitor/
+│
+├── app/
+│   ├── __init__.py
+│   ├── config.py                    # ⚙️ Configurações padrão v3.0
+│   │
+│   ├── workers/                     # ⚡ Threads de processamento
+│   │   ├── __init__.py
+│   │   ├── collection_worker.py    # Coleta UniFi + IP Range [v3.0]
+│   │   └── status_worker.py        # Verificação de status
+│   │
+│   ├── gui/                         # 🖥️ Interface gráfica
+│   │   ├── __init__.py
+│   │   ├── main_window.py          # Janela principal
+│   │   ├── collaborators_tab.py    # Aba de Colaboradores
+│   │   ├── settings_tab.py         # ⚙️ 3 TABS Config [v3.0]
+│   │   ├── login_dialog.py         # 🔐 Login [NOVO v3.0]
+│   │   ├── first_access_dialog.py  # 🎯 Primeiro Acesso [NOVO v3.0]
+│   │   └── password_reset_dialog.py # 🔑 Recuperação [NOVO v3.0]
+│   │
+│   └── data/                        # 💾 Gerenciamento de dados
+│       ├── __init__.py
+│       ├── data_manager.py         # Persistência colaboradores
+│       ├── auth_manager.py         # 🔐 Autenticação [NOVO v3.0]
+│       ├── ip_blocker.py           # 🚫 Bloqueio [NOVO v3.0]
+│       └── ip_mapping.py           # 📡 IP/Coletor [NOVO v3.0]
+│
+├── docs/                            # 📚 Documentação v3.0
+│   ├── EXAMPLES.md                 # 23 exemplos práticos
+│   ├── CONTRIBUTING.md             # Guia desenvolvedores
+│   └── ARCHITECTURE.md             # Arquitetura v3.0
+│
+├── resources/                       # 🎨 Recursos visuais
+│   └── icons/
+│       ├── icon.png                # Ícone da aplicação
+│       └── README.md
+│
+├── .gitignore                      # Git ignore (CRÍTICO v3.0!)
+├── CHANGELOG.md                    # Histórico completo v3.0
+├── QUICKSTART.md                   # Guia rápido 5 minutos
+├── INSTALACAO.txt                  # Guia instalação completo
+├── PROJECT_SUMMARY.txt             # Estrutura resumida
+├── README.md                       # 📖 Este arquivo
+├── requirements.txt                # 📦 Dependências Python
+├── setup.sh                        # 🔧 Script de instalação
+├── run.py                          # 🚀 EXECUTAR AQUI!
+│
+├── unifi_config.json               # 🌐 Credenciais UniFi [AUTO]
+├── settings_auth.json              # 🔐 Credenciais Admin [AUTO v3.0]
+├── ip_range_config.json            # 📡 Config IP Range [AUTO v3.0]
+├── ip_blocks.json                  # 🚫 Bloqueios [AUTO v3.0]
+└── colaboradores_data.json         # 💾 Colaboradores [AUTO]
+```---
+
+## 🎯 Main Features v3.0
+
+### 🔐 Administrative Authentication (NEW v3.0)
+
+**First Access Mandatory:**
+- Default credentials: `admin` / `admin123`
+- System **REQUIRES** password change on first run
+- Choose security question (10 options)
+- Encrypted response (SHA-256)
+- File: `settings_auth.json` (SHA-256 password)
+
+**Login:**
+- Access to settings requires authentication
+- SHA-256 encrypted password (not reversible)
+- Logout for protection
+
+**Password Recovery:**
+- Forgot your password? Use security question
+- Response verified via SHA-256 hash
+- Set new password if correct answer
+
+### 🚫 Smart Lock System (NEW v3.0)
+
+**Progressive Lock:**
+```
+Coletor detectado com IP incorreto:
+
+Tentativa 1:
+├─ Bloqueia no UniFi Controller
+├─ Aguarda 60 segundos
+├─ Desbloqueia temporariamente (10 segundos)
+├─ Verifica se IP foi corrigido
+└─ Ainda incorreto? → Bloqueia novamente
+
+Tentativas 2-4: Repete processo acima
+
+Tentativa 5+:
+├─ BLOQUEIO DEFINITIVO
+├─ NÃO desbloqueia mais automaticamente
+├─ MAS continua verificando em background
+└─ Se IP corrigido: Desbloqueia automaticamente ✅
+```
+
+**Statistics:**
+- Total blocks
+- Temporary vs Permanent
+- Details of each block (attempts, last update)
+- File: `ip_blocks.json`
+
+**Logs:**
+- File: `monitor_bloqueio_coletores.log`
+- Record of all blocking/unblocking actions
+
+### 📡 Configurable IP Range (NEW v3.0)
+
+**Automatic Mode Detection:**
+
+| Range | Detected Mode | Calculation |
+|-------|----------------|---------|
+| 100-199 | PATTERN (Last 2 digits) | Collector 15 → .115 |
+| 2-253 | OFFSET (Sequential) | Collector 15 → .17 (2+15) |
+| 100-253 | PATTERN | Collector 15 → .115 |
+| 2-199 | OFFSET | Collector 15 → .17 |
+
+**Detection Rule:**
+```python
+if start_ip % 100 == 0:
+    modo = "PADRÃO"  # 100, 200 → Últimos 2 dígitos
+else:
+    modo = "OFFSET"  # 2, 50 → Sequencial
+```
+
+**Interface:**
+- IP Base Field
+- Spinners Start/End IP (1-254)
+- **Real-Time Preview:**
+  - Automatically detected mode
+  - Mapping examples
+  - First and last collector
+- Immediate application when saving
+- File: `ip_range_config.json`
+
+### ⚙️ Settings - 3 Tabs (UPDATED v3.0)
+
+**Login Required** to access:
+
+**Tab 1: 🌐 UniFi Controller**
+- Host, User, Password
+- Test connection before saving
+- Save settings
+
+**Tab 2: 📡 IP Range** (NEW!)
+- IP base
+- Start/End IP
+- Real-time preview
+- Save configuration
+
+**Tab 3: 🚫 Locks** (NEW!)
+- Blocking statistics
+- List of blocked devices
+- Status (Temporary vs Definitive)
+- Update statistics
+
+### 🖥️ Collector Monitor
+
+- Real-time status view
+- Visual indicators: 🟢 Online | 🔴 Offline | 🔵 Free | 🟠 Alert
+- Automatic detection of free IPs (configurable range v3.0)
+- Parallel ping for quick checking
+- Multiple simultaneous filters
+
+### 👥 Employee Management
+
+- Assignment of collaborators by collector
+- Definition of shifts (Morning/Afternoon/Night/Dawn)
+- Customized schedules
+- Assignment history
+
+**Incorrect IP Detection with Blocking (v3.0):**
+
+When Collector 58 uses Collector 29's IP:
+
+```
+┌───────────────────────────────────────────────────────┐
+│ Coletor 29 - SEP | 203.0.113.129                    │  ← 🔴 Pisca vermelho
+│ [SEM BOTÕES]                                           │     (Vítima - IP roubado)
+├───────────────────────────────────────────────────────┤
+│ ⚠️ Coletor 58 - SEP (IP INCORRETO) | ❌ 203.0.113.129│  ← 🔴 Pisca + BLOQUEADO
+│ [SEM BOTÕES]                                           │     (Usando IP errado)
+├───────────────────────────────────────────────────────┤
+│ ✅ Coletor 58 - SEP (IP CORRETO) | ✓ 203.0.113.158  │  ← 🟢 Fundo verde
+│ [➕][✏️][🗑️][📋]                                         │     (IP correto + ações)
+└───────────────────────────────────────────────────────┘
+```
+
+**Automatic System (v3.0):**
+1. Detects incorrect IP ✅
+2. Adds to `ip_blocks.json` ✅
+3. Blocks on UniFi Controller ✅
+4. Attempts 1-4: Unlock temp. (10s) for verification ✅
+5. Attempt 5+: Permanent block ✅
+6. When to fix: Automatically unlocks ✅
+
+---
+
+## ⚙️ Configuration
+
+### Method 1: Via Graphical Interface (Recommended) ⭐
+
+#### Step 1: First Access (v3.0)
+```bash
+python3 run.py
+```
+
+Dialog appears automatically:
+1. **Enter new password** (minimum 6 characters)
+2. **Choose security question** (10 options)
+3. **Enter response** (will be encrypted)
+4. Click **"✅ Configure and Access"**
+
+#### Step 2: Login
+
+1. **"⚙️ Settings"** tab
+2. Click **"🔐 Login"**
+3. User: `admin` / Password: your new password
+4. Click **"✅ Enter"**
+
+#### Step 3: Configure UniFi
+
+1. Tab **"🌐 UniFi Controller"**
+2. Host: `https://203.0.113.1:8443`
+3. User: `user_example`
+4. Password: `example_password`
+5. (Optional) **"🔌 Test Connection"**
+6. **"💾 Save"**
+
+#### Step 4: Configure IP Range (NEW v3.0)
+
+1. Tab **"📡 IP Range"**
+2. Base IP: `203.0.113`
+3. Range: `100` to `199` (or `2` to `253`)
+4. See real-time preview
+5. **"💾 Save IP Range Setting"**
+
+#### Step 5: View Blocks (NEW v3.0)
+
+1. Tab **"🚫 Locks"**
+2. View real-time statistics
+3. **"🔄 Update Statistics"**
+
+### Method 2: Via config.py File (Optional)
+```python
+# Conexão UniFi
+UNIFI_HOST = "https://203.0.113.1:8443"
+UNIFI_USERNAME = "usuario"
+UNIFI_PASSWORD = "senha"
+
+# IP Range (v3.0)
+IP_RANGE_BASE = "203.0.113"
+IP_RANGE_START = 100  # ou 2
+IP_RANGE_END = 199    # ou 253
+
+# Bloqueio (v3.0)
+ENABLE_IP_BLOCKING = True
+MAX_TENTATIVAS_BLOQUEIO = 4
+TEMP_UNBLOCK_TIME = 10
+IP_BLOCK_CHECK_INTERVAL = 60
+
+# Atualização
+AUTO_UPDATE_INTERVAL = 15000  # 15 segundos
+BLINK_INTERVAL = 800          # 0.8 segundos
+
+# Interface
+WINDOW_WIDTH = 1600
+WINDOW_HEIGHT = 900
+```
+**Note:** Interface overrides these values!
+
+### Load Priority v3.0
+```
+🔍 Sistema de Carregamento Inteligente:
+
+1. Credenciais UniFi:
+   ├─ unifi_config.json existe? → Usa JSON
+   └─ Não existe? → Usa config.py
+
+2. IP Range:
+   ├─ ip_range_config.json existe? → Usa JSON [v3.0]
+   └─ Não existe? → Usa config.py (100-199)
+
+3. Autenticação:
+   ├─ settings_auth.json existe? → Requer login [v3.0]
+   └─ Não existe? → Primeiro acesso obrigatório
+
+4. Bloqueios:
+   └─ ip_blocks.json (sempre usado) [v3.0]
+```---
+
+## 📖 How to Use
+
+### 1. First Run (v3.0)
+
+**First Access Mandatory:**
+- Run: `python3 run.py`
+- Dialog appears automatically
+- **Change default password** (required!)
+- Configure security question
+- Click "✅ Configure"
+
+**Login:**
+- **"⚙️ Settings"** tab
+- Click **"🔐 Login"**
+- Use new password
+
+**Configure:**
+- Tab **"🌐 UniFi"**: UniFi Credentials
+- Tab **"📡 IP Range"**: IP range
+- Tab **"🚫 Blocks"**: Statistics
+
+### 2. Monitoring
+
+- The application automatically starts the collection
+- Active auto-update (15 seconds)
+- Use filters to find collectors
+- Click **"🔄 Update Status"** for manual
+
+### 3. Employee Management
+
+- Tab **"👥 Employee Management"**
+- Click **"➕"** to add
+- Fill in: Name, Function, Shift, Schedule
+- Click **"✏️"** to edit
+- Click **"🗑️"** to remove
+- Click **"📋"** for details and history
+- ⚠️ **Lines with INCORRECT IP (red) do not allow editing**
+- 🚫 **Blocked collectors appear in the Blocks tab (v3.0)**
+
+### 4. Recover Password (v3.0)
+
+If you forget your password:
+1. **"⚙️ Settings"** tab
+2. Click **"Forgot password?"**
+3. Answer security question
+4. Enter new password
+5. Click **"✅ Reset"**
+
+### 5. Filters
+
+- **Status**: All, Online, Offline, Free, Alert
+- **Sector**: All, Receiving, Separation
+- **Manufacturer**: Filters by device manufacturer
+- **Name**: Textual search in the name of the collector
+- **IP**: Textual search on IP address
+
+---
+
+## 🔐 Security v3.0
+
+### Sensitive Files
+
+**⚠️ CRITICAL: Add to .gitignore!**
+```bash
+# .gitignore
+unifi_config.json           # Credenciais UniFi
+settings_auth.json          # Credenciais admin (SHA-256)
+ip_blocks.json              # Bloqueios
+ip_range_config.json        # IP Range
+colaboradores_data.json     # Dados
+monitor_bloqueio_coletores.log  # Logs
+*.log
+```
+
+### Good Practices
+
+1. **Change default password** on first access (mandatory)
+2. **Add files to .gitignore**
+3. **chmod 600 settings_auth.json** (Linux/Mac)
+4. **Back up** in a safe location
+5. **DO NOT share** JSON files
+6. **Change password** periodically
+
+### Risk Mitigations
+
+- ✅ SHA-256 (non-reversible)
+- ✅ First access required
+- ✅ Security question
+- ⚠️ UniFi in plain text (`unifi_config.json`)
+- 🔒 Consider AES for production
+
+---
+
+## 🛠️ Maintenance and Development
+
+### Modify Tab Width
+
+In `app/gui/main_window.py` (line ~55):
+```python
+QTabBar::tab {
+    padding: 10px 60px;    # Segundo valor = largura
+    min-width: 250px;
+}
+```
+
+### Add New Sector
+
+To add a new sector, update the settings and filters in the interface.
+
+### Example 1: First Access Required
+```text
+1. Execute: python3 run.py
+2. Digite NOVA senha (mínimo 6 caracteres)
+3. Escolha uma pergunta de segurança.
+4. Escolher pergunta: "Qual o nome da sua mãe?"
+5. Resposta: "Maria" (criptografada)
+6. ✅ Sistema pronto!
+```
+
+### Example 2: Configure Range 2-253
+```
+1. Login em ⚙️ Configurações
+2. Tab "📡 Range de IPs"
+3. Base: 203.0.113
+4. Range: 2 até 253
+5. Preview mostra: "Modo OFFSET (Sequencial)"
+6. Exemplo: Coletor 15 → 203.0.113.17
+7. 💾 Salvar
+8. ✅ Sistema escaneia 2-253!
+```
+
+### Example 3: Automatic Lock
+```
+Coletor 58 com IP .129 (errado, deveria ser .158):
+
+1. Sistema detecta IP incorreto
+2. Bloqueia no UniFi
+3. Tentativas 1-4: Desbloqueia temp. (10s)
+4. Tentativa 5+: Bloqueio definitivo
+5. Quando corrigir para .158: Desbloqueia auto ✅
+```
+
+More examples: [docs/EXAMPLES.md](docs/EXAMPLES.md)
+
+---
+
+## 🤝 Contributing
+
+See [docs/CONTRIBUTING.md](docs/CONTRIBUTING.md) for:
+- Project structure
+- Good practices v3.0
+- Examples of modifications
+- Authentication, IP Range and blocking flows
+
+---
+
+## 📄 License
+
+This repository **is not open source**. It is publicly available
+for portfolio/technical demonstration purposes only.
+
+- ✅ Allowed: viewing the code through the GitHub interface.
+- ❌ Prohibited: copying, downloading, cloning for reuse, using, modifying, executing
+  or redistribute this code, in whole or in part, without prior authorization
+  and in writing from the author.
+
+All rights are reserved. See full terms at
+[`LICENSE`](./LICENSE).
+
+---
+
+## 👨‍💻 Developer
+
+**Lucas Veríssimo de Oliveira**
+Company
+
+---
+
+## 📝 Changelog
+
+See [CHANGELOG.md](CHANGELOG.md) for complete history.
+
+### v3.0.0 (02/16/2026) - Complete Intelligent System
+- ✅ Administrative authentication (SHA-256)
+- ✅ Progressive smart lock
+- ✅ Configurable IP Range
+- ✅ 3 configuration tabs
+- ✅ Automatic mode detection
+- ✅ Dialogs (Login, FirstAccess, PasswordReset)
+
+### v2.1.0 (06/11/2025)
+- ✅ Configuration via the interface
+- ✅ Improved bad IP detection
+- ✅ Immediate application of settings
+
+### v2.0.0 (01/01/2025)
+- ✅ Modular structure
+- ✅ Table without flickering
+- ✅ Complete documentation
+
+---
+
+## 🎉 Ready to Use!
+```bash
+# Instalar
+pip install -r requirements.txt
+
+# Executar
+python3 run.py
+
+# Primeiro acesso: trocar senha
+# Login: configurar sistema
+# Usar: monitorar coletores!
+```
+
+**Version 3.0.0 - Smart, Secure and Configurable System** 🔐📡🚫
+
+---
+
 # 📡 UniFi Collector Monitor v3.0.0 - Sistema Inteligente Completo
 
 Monitor de Coletores UniFi com Gestão de Colaboradores, Autenticação Administrativa, Bloqueio Inteligente e IP Range Configurável - Interface gráfica profissional para monitoramento em tempo real.
@@ -67,17 +690,20 @@ Monitor de Coletores UniFi com Gestão de Colaboradores, Autenticação Administ
 
 ### 1. Clone ou baixe o projeto
 
+
 ```bash
 cd unifi-collector-monitor
 ```
 
 ### 2. Instale as dependências
 
+
 ```bash
 pip install -r requirements.txt
 ```
 
 ### 3. Execute a aplicação
+
 
 ```bash
 python3 run.py
@@ -196,6 +822,7 @@ unifi-collector-monitor/
 
 **Bloqueio Progressivo:**
 
+
 ```
 Coletor detectado com IP incorreto:
 
@@ -237,6 +864,7 @@ Tentativa 5+:
 | 2-199 | OFFSET | Coletor 15 → .17 |
 
 **Regra de Detecção:**
+
 ```python
 if start_ip % 100 == 0:
     modo = "PADRÃO"  # 100, 200 → Últimos 2 dígitos
@@ -323,6 +951,7 @@ Quando Coletor 58 usa IP do Coletor 29:
 
 #### Passo 1: Primeiro Acesso (v3.0)
 
+
 ```bash
 python3 run.py
 ```
@@ -364,6 +993,7 @@ Dialog aparece automaticamente:
 3. **"🔄 Atualizar Estatísticas"**
 
 ### Método 2: Via Arquivo config.py (Opcional)
+
 
 ```python
 # Conexão UniFi
@@ -480,6 +1110,7 @@ Se esquecer a senha:
 
 **⚠️ CRÍTICO: Adicione ao .gitignore!**
 
+
 ```bash
 # .gitignore
 unifi_config.json           # Credenciais UniFi
@@ -516,6 +1147,7 @@ monitor_bloqueio_coletores.log  # Logs
 
 Em `app/gui/main_window.py` (linha ~55):
 
+
 ```python
 QTabBar::tab {
     padding: 10px 60px;    # Segundo valor = largura
@@ -524,88 +1156,23 @@ QTabBar::tab {
 ```
 
 ### Adicionar Novo Setor
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
-"""Model: Gerenciamento de configurações persistentes em JSON."""
 
-import json
-import base64
-import logging
-from pathlib import Path
+Para adicionar um novo setor, atualize as configurações e filtros na interface.
+
+### Exemplo 1: Primeiro Acesso Obrigatório
 
 
-class ConfigManager:
-    """Gerencia configurações salvas em arquivo JSON com ofuscação de senha."""
-
-    _KEY = b"chave-de-exemplo"
-
-    DEFAULTS = {
-        "username": "",
-        "password": "",
-        "port": "8443",
-        "last_ip": "",
-        "validate_cpf_online": True,
-        "theme": "dark",
-        "custom_ips": [],
-    }
-
-    def __init__(self, filepath: Path):
-        self.filepath = filepath
-        self.data: dict = dict(self.DEFAULTS)
-        self.load()
-
-    def load(self):
-        """Carrega configurações do arquivo."""
-        if not self.filepath.exists():
-            return
-        try:
-            with open(self.filepath, 'r', encoding='utf-8') as f:
-                raw = json.load(f)
-            if raw.get("_pw"):
-                try:
-                    raw["password"] = self._deobfuscate(raw.pop("_pw"))
-                except Exception:
-                    raw["password"] = ""
-            self.data.update(raw)
-        except Exception as e:
-            logging.warning(f"[CONFIG] Erro ao carregar: {e}")
-
-    def save(self):
-        """Salva configurações no arquivo."""
-        to_save = dict(self.data)
-        pw = to_save.pop("password", "")
-        if pw:
-            to_save["_pw"] = self._obfuscate(pw)
-        try:
-            with open(self.filepath, 'w', encoding='utf-8') as f:
-                json.dump(to_save, f, indent=2, ensure_ascii=False)
-        except Exception as e:
-            logging.error(f"[CONFIG] Erro ao salvar: {e}")
-
-    def get(self, key: str, default=None):
-        return self.data.get(key, default)
-
-    def set(self, key: str, value):
-        self.data[key] = value
-
-    def update(self, **kwargs):
-        self.data.update(kwargs)
-
-    def _obfuscate(self, text: str) -> str:
-        key = self._KEY
-        result = bytes([ord(c) ^ key[i % len(key)] for i, c in enumerate(text)])
-        return base64.b64encode(result).decode()
-
-    def _deobfuscate(self, encoded: str) -> str:
-        key = self._KEY
-        raw = base64.b64decode(encoded.encode())
-        return ''.join(chr(b ^ key[i % len(key)]) for i, b in enumerate(raw))
+```text
+1. Execute: python3 run.py
+2. Digite NOVA senha (mínimo 6 caracteres)
+3. Escolha uma pergunta de segurança.
 4. Escolher pergunta: "Qual o nome da sua mãe?"
 5. Resposta: "Maria" (criptografada)
 6. ✅ Sistema pronto!
 ```
 
 ### Exemplo 2: Configurar Range 2-253
+
 
 ```
 1. Login em ⚙️ Configurações
@@ -619,6 +1186,7 @@ class ConfigManager:
 ```
 
 ### Exemplo 3: Bloqueio Automático
+
 
 ```
 Coletor 58 com IP .129 (errado, deveria ser .158):
@@ -691,6 +1259,7 @@ Veja [CHANGELOG.md](CHANGELOG.md) para histórico completo.
 ---
 
 ## 🎉 Pronto para Usar!
+
 
 ```bash
 # Instalar
